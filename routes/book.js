@@ -3,6 +3,16 @@ const router = express.Router();
 
 const Book = require('../models/Book');
 
+
+router.get('/news', (req, res) => {
+    const promise = Book.find({}).limit(5).sort({ year: -1});
+    promise.then((data) => {
+        res.json(data);
+    }).catch((err) => {
+        res.json(err);
+    });
+});
+
 router.get('/:book_id', (req,res) => {
     const promise = Book.findById(req.params.book_id);
 
