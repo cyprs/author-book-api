@@ -41,6 +41,16 @@ router.put('/:book_id', (req,res) => {
     });
 });
 
+router.delete('/:book_id', (req,res) => {
+    const promise = Book.findByIdAndRemove(req.params.book_id);
+
+    promise.then((data) => {
+        res.json({status : true});
+    }).catch((err) => {
+        res.json(err);
+    });
+});
+
 router.get('/list', (req, res) => {
     const promise = Book.find({});
     promise.then((data) => {
