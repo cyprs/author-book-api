@@ -3,6 +3,16 @@ const router = express.Router();
 
 const Book = require('../models/Book');
 
+router.get('/:book_id', (req,res) => {
+    const promise = Book.findById(req.params.book_id);
+
+    promise.then((data) => {
+        res.json(data);
+    }).catch((err) => {
+        res.json(err);
+    });
+});
+
 router.post('/', (req, res) => {
     const {title, category, year, lang } = req.body;
 
@@ -14,6 +24,7 @@ router.post('/', (req, res) => {
     });
 
     const promise = book.save();
+
     promise.then((data) => {
         res.json(data);
     }).catch((err) => {
