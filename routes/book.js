@@ -24,6 +24,15 @@ router.post('/', (req, res) => {
     });
 
     const promise = book.save();
+    promise.then((data) => {
+        res.json(data);
+    }).catch((err) => {
+        res.json(err);
+    });
+});
+
+router.put('/:book_id', (req,res) => {
+    const promise = Book.findByIdAndUpdate(req.params.book_id, req.body, {new : true});
 
     promise.then((data) => {
         res.json(data);
