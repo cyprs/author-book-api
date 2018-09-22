@@ -5,11 +5,15 @@ const BookSchema = new Schema ({
     author_id: Schema.Types.ObjectId,
     title:{
        type: String,
-       required: true
+       required: true,
+       maxlength: 150,
+       minlength: 1
     },
     category:{
        type: String,
-       required: true
+       required: true,
+       maxlength: 50,
+       minlength: 1
     },
     year:{
        type: Number,

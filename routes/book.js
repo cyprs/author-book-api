@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Book = require('../models/Book');
 
-router.get('/list', (req, res) => {
+router.get('/', (req, res) => {
     const promise = Book.aggregate([
         {
             $lookup: {
@@ -16,8 +16,8 @@ router.get('/list', (req, res) => {
         {
             $unwind: '$authors'
         }
-
     ]);
+
     promise.then((data) => {
         res.json(data);
     }).catch((err) => {
