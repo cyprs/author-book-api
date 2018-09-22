@@ -3,6 +3,27 @@ const router = express.Router();
 
 const Book = require('../models/Book');
 
+router.get('/list', (req, res) => {
+    const promise = Book.aggregate([
+        {
+            $lookup: {
+                from: 'authors',
+                localField: 'author_id',
+                foreignField: '_id',
+                as: 'authors'
+            }
+        },
+        {
+            $unwind: '$authors'
+        }
+
+    ]);
+    promise.then((data) => {
+        res.json(data);
+    }).catch((err) => {
+        res.json(err);
+    });
+});
 
 router.get('/news', (req, res) => {
     const promise = Book.find({}).limit(5).sort({ year: -1});
@@ -57,15 +78,6 @@ router.delete('/:book_id', (req,res) => {
 
     promise.then((data) => {
         res.json({status : true});
-    }).catch((err) => {
-        res.json(err);
-    });
-});
-
-router.get('/list', (req, res) => {
-    const promise = Book.find({});
-    promise.then((data) => {
-        res.json(data);
     }).catch((err) => {
         res.json(err);
     });
