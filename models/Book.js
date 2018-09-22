@@ -7,9 +7,18 @@ const BookSchema = new Schema ({
        type: String,
        required: true
     },
-    category: String,
-    year: Number,
-    lang: String,
+    category:{
+       type: String,
+       required: true
+    },
+    year:{
+       type: Number,
+       required: true
+    },
+    lang:{
+       type: String,
+       required: true
+    },
     date: {
         type: Date,
         default: Date.now

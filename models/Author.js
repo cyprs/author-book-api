@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AuthorSchema = new Schema ({
-    name: String,
-    bio: String,
+    name:{
+      type: String,
+      required: true
+    },
+    bio:{
+      type: String,
+      required: true
+    }
 });
 
 module.exports = mongoose.model('Author', AuthorSchema);

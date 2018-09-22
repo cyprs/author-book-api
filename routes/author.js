@@ -1,8 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.send('respond with a resource');
+const Author = require('../models/Author');
+
+router.post('/', (req, res, next) => {
+    const author = new Author(req.body);
+    const promise = author.save();
+
+    promise.then((data) => {
+        res.json(data);
+    }).catch((err) => {
+        res.json(err);
+    });
 });
 
 module.exports = router;
