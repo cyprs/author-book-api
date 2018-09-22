@@ -73,6 +73,16 @@ router.put('/:author_id', (req,res) => {
     });
 });
 
+router.delete('/:author_id', (req,res) => {
+    const promise = Author.findByIdAndRemove(req.params.author_id);
+
+    promise.then((data) => {
+        res.json({status : true});
+    }).catch((err) => {
+        res.json(err);
+    });
+});
+
 router.get('/:author_id', (req,res) => {
     const promise = Author.aggregate([
         {
