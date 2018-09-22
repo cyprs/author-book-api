@@ -24,9 +24,10 @@ router.get('/:book_id', (req,res) => {
 });
 
 router.post('/', (req, res) => {
-    const {title, category, year, lang } = req.body;
+    const {author_id, title, category, year, lang } = req.body;
 
     const book = new Book({
+        author_id: author_id,
         title: title,
         category : category,
         year: year,
