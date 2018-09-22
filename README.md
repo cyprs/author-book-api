@@ -1,7 +1,7 @@
 # author-book-api
 Node.JS author book api
 
-# Book
+## Book
 
 | HTTP | Route | Parameters	 | Description	 |
 | --- | --- | --- | --- |
@@ -14,7 +14,7 @@ Node.JS author book api
 | `GET`    | /api/book/search/start_year/end_year | -                   | Books search in two dates.   |
 
 
-# Author
+## Author
 
 | HTTP | Route | Parameters	 | Description	 |
 | --- | --- | --- | --- |
