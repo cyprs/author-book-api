@@ -10,6 +10,5 @@ Node.JS author book api
 | `POST`   | /api/book         | author_id, title, category, year, lang | Create a new book.           |
 | `PUT`    | /api/book/book_id | author_id, title, category, year, lang | Update a book with new info. |
 | `DELETE` | /api/book/book_id | -                                      | Delete a book.               |
-
 | `GET`    | /api/book/news    | -                                      | List new books. |
 | `GET`    | /api/book/search/start_year/end_year | - | Books search in two dates. |
