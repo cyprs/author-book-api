@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 //npm test -> komutu ile testi çalıştır.
 
 describe('Node Server', () => {
-   it('(GET /) anasayfayı döndürür', (done) => {
+   it('(GET /) returns the homepage', (done) => {
        chai.request(server)
            .get('/')
            .end((err, res) => {
