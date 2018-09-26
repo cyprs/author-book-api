@@ -30,4 +30,31 @@ describe('/api/book tests', () => {
                });
         })
     });
+
+    describe('/POST book', () => {
+        it('it should POST a book', (done) => {
+            const book = {
+                title: 'Hayatın Kaynağı',
+                author_id: '5ba60b4b645a021a3334a22b',
+                category: 'Roman',
+                year: 1990,
+                lang: 'tr'
+
+            };
+            chai.request(server)
+                .post('/api/book')
+                .send(book)
+                .set('x-access-token', token)
+                .end((err,res) =>{
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('title');
+                    res.body.should.have.property('author_id');
+                    res.body.should.have.property('category');
+                    res.body.should.have.property('year');
+                    res.body.should.have.property('lang');
+                    done();
+                })
+        });
+    });
 });
