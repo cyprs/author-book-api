@@ -5,7 +5,7 @@ const server = require('../app');
 
 chai.use(chaiHttp);
 
-let token;
+let token, bookId;
 
 describe('/api/book tests', () => {
     before((done) => {
@@ -53,8 +53,28 @@ describe('/api/book tests', () => {
                     res.body.should.have.property('category');
                     res.body.should.have.property('year');
                     res.body.should.have.property('lang');
+                    bookId = res.body._id;
                     done();
                 })
+        });
+    });
+
+    describe('/GET/:author_id book', () => {
+        it('it should GET a book by the given id', (done) => {
+            chai.request(server)
+                .get('/api/book/'+bookId)
+                .set('x-access-token', token)
+                .end((err,res) => {
+                   res.should.have.status(200);
+                   res.body.should.be.a('object');
+                    res.body.should.have.property('title');
+                    res.body.should.have.property('author_id');
+                    res.body.should.have.property('category');
+                    res.body.should.have.property('year');
+                    res.body.should.have.property('lang');
+                    res.body.should.have.property('_id').eql(bookId);
+                    done();
+                });
         });
     });
 });
