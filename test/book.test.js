@@ -59,7 +59,7 @@ describe('/api/book tests', () => {
         });
     });
 
-    describe('/GET/:author_id book', () => {
+    describe('/GET/:book_id book', () => {
         it('it should GET a book by the given id', (done) => {
             chai.request(server)
                 .get('/api/book/'+bookId)
@@ -78,7 +78,7 @@ describe('/api/book tests', () => {
         });
     });
 
-    describe('/PUT/:author_id book', () => {
+    describe('/PUT/:book_id book', () => {
         it('it should UPDATE a book given by id', (done) => {
             const book = {
                 title: 'Beyaz Zambaklar Ülkesinde',
@@ -101,6 +101,20 @@ describe('/api/book tests', () => {
                     res.body.should.have.property('lang').eql(book.lang);
                     done();
                 })
+        });
+    });
+
+    describe('/DELETE/:book_id book', () => {
+        it('it should DELETE a book given by id', (done) => {
+            chai.request(server)
+                .delete('/api/book/'+bookId)
+                .set('x-access-token', token)
+                .end((err,res) =>{
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('status').eql(true);
+                    done();
+                });
         });
     });
 });
