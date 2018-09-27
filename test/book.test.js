@@ -77,4 +77,30 @@ describe('/api/book tests', () => {
                 });
         });
     });
+
+    describe('/PUT/:author_id book', () => {
+        it('it should UPDATE a book given by id', (done) => {
+            const book = {
+                title: 'Beyaz Zambaklar Ülkesinde',
+                author_id: '5ba60b4b645a021a3334a22b',
+                category: 'Eğitim',
+                year: 1950,
+                lang: 'tr'
+            };
+            chai.request(server)
+                .put('/api/book/'+bookId)
+                .send(book)
+                .set('x-access-token', token)
+                .end((err,res) =>{
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('title').eql(book.title);
+                    res.body.should.have.property('author_id').eql(book.author_id);
+                    res.body.should.have.property('category').eql(book.category);
+                    res.body.should.have.property('year').eql(book.year);
+                    res.body.should.have.property('lang').eql(book.lang);
+                    done();
+                })
+        });
+    });
 });
