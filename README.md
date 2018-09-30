@@ -1,3 +1,5 @@
+[![Build status](https://api.travis-ci.com/cyprs/author-book-api.svg)](https://travis-ci.com/cyprs/author-book-api)
+
 # author-book-api
 Node.JS author book api
 
