@@ -7,7 +7,6 @@ author-book.herokuapp.com
 
 | HTTP | Route | Parameters	 | Description	 |
 | --- | --- | --- | --- |
-
 | `POST`   | /register         | username, password | Create a new user.    |
 | `POST`   | /authenticate     | username, password | Generate a token.     |
 
