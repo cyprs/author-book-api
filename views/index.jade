@@ -1,5 +1,24 @@
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{title}
+  h1= "Author-Book-Api"
+  h3= "INDEX"
+
+  p "POST"   -> /register     -> username, password  -> Create a new user.<br>
+  p "POST"   -> /authenticate -> username, password  -> Generate a token. <br>
+
+  h3= "AUTHOR"
+
+  p "GET"    -> /api/author                         -> List all authors.<br>
+  p "GET"    -> /api/author/author_id               -> Get a author.<br>
+  p "POST"   -> /api/author         -> name, bio    -> Create a new author.<br>
+  p "PUT"    -> /api/author/author_id -> name, bio  -> Update a author with new info.<br>
+  p "DELETE" -> /api/author/author_id               -> Delete a author.<br>
+
+  h3= "BOOK"
+  p "GET"     ->  /api/book                                                      -> List all books. <br>
+  p "GET"     ->  /api/book/book_id                                              -> Get a book.     <br>
+  p "POST"    ->  /api/book         -> author_id, title, category, year, lang    -> Create a new book. <br>
+  p "PUT"     -> /api/book/book_id  -> author_id, title, category, year, lang    -> Update a book with new info. <br>
+  p "DELETE"  -> /api/book/book_id                                               -> Delete a book. <br>
+  p "GET"     -> /api/book/news                                                  -> List new books. <br>
+  p "GET"     -> /api/book/search/start_year/end_year                            -> Books search in two dates.<br>
